@@ -1,0 +1,29 @@
+[
+      {
+      "id": 0,
+      "nombre": "Jornada de limpieza simultánea en El Roble y Barranca",
+      "hora": "08:30",
+      "fecha": "21-09-2024",
+      "lugar": "CTP El Roble | Frente a la Clínica de Barranca",
+      "imagen": "https://scontent.fsjo6-1.fna.fbcdn.net/v/t39.30808-6/467665420_18158589808323196_529675656479237972_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=cvu5aRCOnZcQ7kNvwFqkKJf&_nc_oc=AdlQ5ScBOhcTD3K4PTrHksJGlYIjUd2TorBLU6AQ8ZgmYmkjPIOHYAeClT-q4Ax0MU8&_nc_zt=23&_nc_ht=scontent.fsjo6-1.fna&_nc_gid=z1H6bokz3Ed_nJTVBdIYWQ&oh=00_AfGJ00UN1Sxeddhwsc-jKpY6fcU_whssN5KRCcCycf_5cQ&oe=6816DAF9",
+      "link": "https://www.facebook.com/share/p/19LbT1iUPw/"
+    },
+    {
+      "id": 1,
+      "nombre": "Jornada Ambiental",
+      "hora": "08:00",
+      "fecha": "12-10-2024",
+      "lugar": "Salón comunal El Cocal",
+      "imagen": "https://scontent.fsjo6-1.fna.fbcdn.net/v/t39.30808-6/467819383_18158589868323196_8395254506852172719_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=eRuekszcNKAQ7kNvwGfFMOX&_nc_oc=AdmNC4NcatzuOY1MvS6ebpWfTf1UqkIbH58XB_Plzcep3_Fwx_M0wb77KaOn9bRVJ4k&_nc_zt=23&_nc_ht=scontent.fsjo6-1.fna&_nc_gid=fs4t5e7XgB8dLRXXutuYYg&oh=00_AfGkcxntv8ya-Jktx7nkz6iWdk-_QnQ_RbH4fx1mwoNSdA&oe=6816E366",
+      "link": "https://www.facebook.com/share/p/1ARPQSkShB/"
+    },
+    {
+      "id": 2,
+      "nombre": "Mega limpieza de playa",
+      "hora": "07:00",
+      "fecha": "04-04-2025",
+      "lugar": "Muelle de cruceros de Puntarenas | Muella Hotel Fiesta",
+      "imagen": "https://scontent.fsjo6-1.fna.fbcdn.net/v/t51.75761-15/486140022_18171239875323196_5296410752640556554_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_T1yR5eKOOAQ7kNvwHEbsAX&_nc_oc=AdmGkq1LVlI6ZdS9NU57AIwkUWgH0PoS4mubNSgMG7bq49GhH63wdRkj0E2bot3Afz0&_nc_zt=23&_nc_ht=scontent.fsjo6-1.fna&_nc_gid=z1H6bokz3Ed_nJTVBdIYWQ&oh=00_AfGsU9DcGYtzf8mMdPFhIdZCdNslryOEuorI5-MGSDCBfA&oe=681703B8",
+      "link": "https://www.facebook.com/share/p/1AR8tzV5CQ/"
+    }
+]

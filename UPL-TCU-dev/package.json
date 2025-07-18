@@ -1,0 +1,25 @@
+{
+  "name": "proyectowebupl",
+  "version": "1.0.0",
+  "main": "js/script.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrjuansebastian/ProyectoWeb-UPL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrjuansebastian/ProyectoWeb-UPL/issues"
+  },
+  "homepage": "https://github.com/mrjuansebastian/ProyectoWeb-UPL#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "firebase": "^11.10.0"
+  }
+}

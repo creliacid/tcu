@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un Puerto Limpio</title>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+
+  <!--BOOTSTRAP-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!--CSS-->
+  <link rel="stylesheet" href="css/index.css">
+
+  <!--JQUERY-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+
+<body>
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-md fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img src="img/logo-upl.png" alt="un puerto limpio" width="70px"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="collapsibleNavbar">
+        <div class="mx-auto">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#inicio"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                  fill="#fff" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                </svg></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#nosotros">Sobre Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#eventos">Eventos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#voluntariado">Voluntariado</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contacto">Contacto</a>
+            </li>
+          </ul>
+        </div>
+
+        <!--Redes-->
+        <div class="redes">
+          <a href="https://www.instagram.com/unpuertolimpio/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-instagram"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+            </svg>
+          </a>
+
+          <a href="https://www.facebook.com/UnPuertoLimpio" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-facebook"
+              viewBox="0 0 16 16">
+              <path
+                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.620h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.208v1.51h2.218l-.354 2.326H9.20V16c3.824-.604 6.75-3.934 6.75-7.951" />
+            </svg>
+          </a>
+
+          <a href="login.html" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-person-badge-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6m5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1z" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </nav>
+
+  <div class="container-fluid" id="inicio">
+    <div class="d-flex flex-wrap align-content-center inicio">
+      <div class="container contenido">
+
+        <h1>Cuidemos <br>El Puerto</h1>
+        <p>¡Únete a nuestra comunidad <br> en acción por un Puntarenas limpio y resiliente!</p>
+
+        <a href="#eventos" class="btn btn-orange me-3">Eventos</a>
+        <!--<a href="#" class="btn btn-white ">Donar</a>-->
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sección de nosotros -->
+
+  <div class="d-flex flex-wrap justify-content-around p-5 scroll-target" id="nosotros">
+
+    <div class="border rounded shadow caja text-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#007A7A" class="bi bi-easel3-fill"
+        viewBox="0 0 16 16">
+        <path
+          d="M8.5 12v1.134a1 1 0 1 1-1 0V12h-5A1.5 1.5 0 0 1 1 10.5V3h14v7.5a1.5 1.5 0 0 1-1.5 1.5zm7-10a.5.5 0 0 0 0-1H.5a.5.5 0 0 0 0 1z" />
+      </svg>
+
+      <h4>Educación</h4>
+      <p class="text-center">En Un Puerto Limpio, entendemos la educación ambiental como un proceso esencial para formar
+        ciudadanos
+        conscientes y comprometidos.</p>
+    </div>
+    <div class="border rounded shadow caja text-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#007A7A" class="bi bi-droplet-half"
+        viewBox="0 0 17 17">
+        <path fill-rule="evenodd"
+          d="M7.21.8C7.69.295 8 0 8 0q.164.544.371 1.038c.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8m.413 1.021A31 31 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10c0 0 2.5 1.5 5 .5s5-.5 5-.5c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z" />
+        <path fill-rule="evenodd"
+          d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87z" />
+      </svg>
+      <h4>Conservación</h4>
+
+
+      <p class="text-center">Nos dedicamos a proteger y restaurar los ecosistemas locales, impulsando acciones concretas
+        que
+        que ayuden a preservar nuestros recursos naturales.</p>
+
+    </div>
+    <div class="border rounded shadow caja text-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#007A7A" class="bi bi-recycle"
+        viewBox="0 0 17 17">
+        <path
+          d="M9.302 1.256a1.5 1.5 0 0 0-2.604 0l-1.704 2.98a.5.5 0 0 0 .869.497l1.703-2.981a.5.5 0 0 1 .868 0l2.54 4.444-1.256-.337a.5.5 0 1 0-.26.966l2.415.647a.5.5 0 0 0 .613-.353l.647-2.415a.5.5 0 1 0-.966-.259l-.333 1.242zM2.973 7.773l-1.255.337a.5.5 0 1 1-.26-.966l2.416-.647a.5.5 0 0 1 .612.353l.647 2.415a.5.5 0 0 1-.966.259l-.333-1.242-2.545 4.454a.5.5 0 0 0 .434.748H5a.5.5 0 0 1 0 1H1.723A1.5 1.5 0 0 1 .421 12.24zm10.89 1.463a.5.5 0 1 0-.868.496l1.716 3.004a.5.5 0 0 1-.434.748h-5.57l.647-.646a.5.5 0 1 0-.708-.707l-1.5 1.5a.5.5 0 0 0 0 .707l1.5 1.5a.5.5 0 1 0 .708-.707l-.647-.647h5.57a1.5 1.5 0 0 0 1.302-2.244z" />
+      </svg>
+
+      <h4>Concientización</h4>
+      <p class="text-center">Trabajamos en sensibilizar a la comunidad sobre problemas ecológicos que enfrentamos,
+        despertando el
+        interés en construir un futuro más limpio y sostenible.</p>
+    </div>
+
+    <div class="container">
+      <div class="row p-1">
+        <div class="col-md-4">
+          <h1>¿Qué es Un <br>Puerto Limpio?</h1>
+        </div>
+        <div class="col-md-8">
+          <p>Somos un grupo organizado de jóvenes de la comunidad de Puntarenas que visibiliza y actúa voluntariamente y
+            sin fines de lucro, por la acción climática, ecosistemas afectados y desarrollo sostenible del cantón de
+            Puntarenas...</p>
+
+          <a href="nosotros.html" class="btn btn-orange float-end btn-conocenos ">Conoce más</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid separador1">
+  </div>
+
+  <!-- Sección de eventos -->
+  <div id="app">
+    <div class="d-flex flex-wrap justify-content-center p-5 bg-claro scroll-target" id="eventos">
+      <h1 class="titulo mb-5">EVENTOS</h1>
+      <div id="event-principal">
+        <img v-if="eventos.length > 0" :src="eventos[eventos.length - 1].imagen" alt="imagen evento" width="100%"
+          height="auto" style="margin-left: 5px;" class="rounded-4">
+      </div>
+      <div class="bg-light rounded-4" id="evet-todos">
+
+        <div v-if="eventos.length > 0">
+          <div class="itemEvent" v-for="(evento, index ) in eventos.slice(-3).reverse()" :key="evento.id">
+            <b>{{ evento.nombre }}</b> <br> (<b>Fecha:</b> {{ evento.fecha }} | <b>Hora:</b> {{ evento.hora }} |
+            <b>Lugar:</b> {{
+            evento.lugar
+            }},)
+            <a :href="evento.link" target="_blank">Ver evento</a> <br>
+          </div>
+        </div>
+        <p v-else>No hay eventos registrados.</p>
+
+        <a href="eventos.html" class="btn btn-orange float-end btn-conocenos ">Conoce más</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Sección de resultados -->
+
+  <div class="container-fluid" id="resultados">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-around p-5 text-center">
+        <div>
+          <h3>Voluntarios</h3>
+          <h1>105+</h1>
+        </div>
+        <div>
+          <h3>Limpiezas</h3>
+          <h1>58</h1>
+        </div>
+        <div>
+          <h3>Reforestaciones</h3>
+          <h1>10</h1>
+        </div>
+        <div>
+          <h3>Residuos recuperados</h3>
+          <h1>100+ t.</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Voluntariado -->
+
+  <div class="container my-5 scroll-target" id="voluntariado">
+    <div class="row align-items-center">
+      <!-- Columna de texto -->
+      <div class="col-md-6">
+        <h2 class="fw-bold ">Voluntariado</h2>
+        <p>¡Se parte de nuestras voluntarias y voluntarios! <br>
+          Lidera y coordina proyectos de tu interés en nuestras
+          distintas líneas de acción o afines, realiza trabajos comunales universitarios con nosotros, doná tu tiempo
+          desde casa para elaboración de material educativo o manejo de redes sociales, difundí y asistí a nuestras
+          actividades, ¡las posibilidades son muchas!</p>
+        <a href="https://forms.gle/gQyyFBmpjcTaMDFSA" class="btn-custom btn-orange" target="_blank">¡ Quiero ser Voluntaria/o !</a>
+      </div>
+      <!-- Columna del video -->
+      <div class="col-md-6">
+        <div class="video-placeholder"> <!--video-placeholder-->
+          <!--<img src="https://img.icons8.com/ios-filled/50/000000/youtube-play.png" alt="Play">-->
+          <iframe src="https://drive.google.com/file/d/1RkyZVo-HYGavefi8x-zZrNPbQURlqlkG/preview"
+            allow="autoplay"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fin de primera caja -->
+
+  <div class="container my-5">
+    <h4 class="text-center fw-bold">COLABORADORES</h4>
+    <div id="carouselColaboradores" class="carousel slide" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-around">
+            <img src="img/Colaborador1.png" alt="Colaborador 1">
+            <img src="img/Colaborador2.png" alt="Colaborador 2">
+            <img src="img/Colaborador3.png" alt="Colaborador 3">
+            <img src="img/Colaborador4.png" alt="Colaborador 4">
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="d-flex justify-content-around">
+            <img src="img/Colaborador5.png" alt="Colaborador 5">
+            <img src="img/Colaborador1.png" alt="Colaborador 6">
+            <img src="img/Colaborador2.png" alt="Colaborador 7">
+            <img src="img/Colaborador3.png" alt="Colaborador 8">
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselColaboradores" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselColaboradores" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+  <!-- Fin de carousel -->
+
+  <div class="container-fluid bg-claro my-5">
+    <div class="container">
+      <div class="objetivos-container">
+        <h4>OBJETIVOS DE DESARROLLO SOSTENIBLE</h4>
+        <p>Como colectivo queremos que nuestro Puntarenas tenga un desarrollo a una comunidad cada vez más limpia y
+          sostenible</p>
+
+        <div class="objetivos-grid">
+          <div class="objetivo-item"><img src="img/objetivo4.png" alt="Objetivo 11"></div>
+          <div class="objetivo-item"><img src="img/objetivo7.png" alt="Objetivo 4"></div>
+          <div class="objetivo-item"><img src="img/objetivo11.png" alt="Objetivo 3"></div>
+          <div class="objetivo-item"><img src="img/objetivo12.png" alt="Objetivo 4"></div>
+          <div class="objetivo-item"><img src="img/objetivo13.png" alt="Objetivo 5"></div>
+          <div class="objetivo-item"><img src="img/objetivo14.png" alt="Objetivo 6"></div>
+          <div class="objetivo-item"><img src="img/objetivo15.png" alt="Objetivo 7"></div>
+          <div class="objetivo-item"><img src="img/objetivo17.png" alt="Objetivo 8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid separador2">
+  </div>
+
+  <!-- Sección de footer -->
+  <div class="container" id="contacto">
+    <div class="row">
+
+      <!-- Sección del formulario -->
+      <div class="col-md-6 d-flex align-items-center">
+        <div class="formulario-contacto w-100 mt-3 mb-2">
+          <h4>FORMULARIO DE CONTACTO</h4>
+          <form id="contactForm" action="https://formsubmit.co/4d33a324bf6de276c5585792ccf61fc4" method="POST">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+              <input type="text" name="nombre" class="form-control" id="exampleFormControlInput1"
+                placeholder="Juan Perez" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput2" class="form-label">Email</label>
+              <input type="email" name="email" class="form-control" id="exampleFormControlInput2"
+                placeholder="name@example.com" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+              <textarea name="mensaje" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                required></textarea>
+            </div>
+            <div class="d-grid gap-3">
+              <button type="submit" class="btn btn-orange btn-block">Enviar</button>
+            </div>
+            <input type="hidden" name="_next" value="https://mrjuansebastian.github.io/ProyectoWeb-UPL/gracias.html">
+          </form>
+        </div>
+      </div>
+
+      <!-- Sección de contacto -->
+      <div class="col-md-6 scroll-target">
+        <div class="contacto-container mt-3 mb-2">
+          <h4 class="fw-bold">CONTÁCTANOS</h4>
+          <p class="mt-3">Email: unpuerto.limpio@gmail.com</p>
+          <p class="mt-3">Puntarenas, Costa Rica</p>
+          <h6 class="mb-4">SÍGUENOS</h6>
+          <div class="d-flex mt-2 redes">
+
+            <a href="https://www.instagram.com/unpuertolimpio/" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FB5704" class="bi bi-instagram"
+                viewBox="0 0 16 16">
+                <path
+                  d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+              </svg>
+            </a>
+
+            <a href="https://www.facebook.com/UnPuertoLimpio" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FB5704" class="bi bi-facebook"
+                viewBox="0 0 16 16">
+                <path
+                  d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.620h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.208v1.51h2.218l-.354 2.326H9.20V16c3.824-.604 6.75-3.934 6.75-7.951" />
+              </svg>
+            </a>
+
+          </div>
+          <p class="mt-4">
+            <a href="https://chat.whatsapp.com/Gt2x4sLLJmAKBsSJSoPr7W" target="_blank"
+              class="text-dark text-decoration-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FB5704" class="bi bi-whatsapp"
+                viewBox="0 0 16 16">
+                <path
+                  d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+              </svg> Únete a nuestro grupo de WhatsApp
+            </a>
+          </p>
+          <hr>
+          <p class="text-muted">© Fundación Un Puerto Limpio | <span id="annio"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/index.js"></script>
+
+
+
+</body>
+
+</html>

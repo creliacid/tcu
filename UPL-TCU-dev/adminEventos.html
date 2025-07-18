@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD de Eventos con Vue.js</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Firebase Modular SDK -->
+    <script type="module" src="./js/firebase-init.js"></script>
+    <script type="module">
+      import { auth } from './js/firebase-init.js';
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+        } else {
+          console.log("Acceso permitido como:", user.email);
+        }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      .redes svg {
+        margin-right: 10px;
+      }
+
+      .redes a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .navbar {
+        background-color: rgba(255, 255, 255, 0.5);
+        background-color: #007a7a;
+      }
+
+      .nav-item {
+        margin: 15px 0 15px 0;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      .nav-item a {
+        color: #fff;
+      }
+
+      .logo {
+        height: 50px;
+      }
+
+      dialog {
+        width: 100%;
+      }
+
+      .itemEvent {
+        border: 3px solid #dc9d00;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      @media only screen and (max-width: 750px) {
+        .navbar {
+          background-color: #007a7a;
+        }
+      }
+    </style>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- Firebase Modular SDK -->
+    <script type="module" src="./js/firebase-init.js"></script>
+    <script type="module">
+      import { auth } from './js/firebase-init.js';
+      import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+        } else {
+          console.log("Acceso permitido como:", user.email);
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"
+          ><img src="img/logo-upl.png" alt="un puerto limpio" width="70px"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <div class="mx-auto"></div>
+          <div class="redes">
+            <a href="register.html" class="btn btn-primary me-2">
+              <b>Registrar Usuario</b>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                 </svg>
+            </a>
+            <a href="login.html" class="btn btn-danger">
+              <b>Salir</b>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                class="bi bi-box-arrow-left"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div id="app">
+        <div class="row">
+          <h1>Eventos</h1>
+
+          <div class="col-md-4">
+            <h2 class="mb-3">Agregar Nuevo Evento</h2>
+            <div class="card shadow-sm border-0">
+              <div class="card-body">
+                <form @submit.prevent="agregarEvento">
+                  <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input
+                      type="text"
+                      id="nombre"
+                      class="form-control"
+                      v-model="nuevoEvento.nombre"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input
+                      type="text"
+                      id="fecha"
+                      class="form-control"
+                      v-model="nuevoEvento.fecha"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="hora" class="form-label">Hora</label>
+                    <input
+                      type="text"
+                      id="hora"
+                      class="form-control"
+                      v-model="nuevoEvento.hora"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="lugar" class="form-label">Lugar</label>
+                    <input
+                      type="text"
+                      id="lugar"
+                      class="form-control"
+                      v-model="nuevoEvento.lugar"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="imagen" class="form-label">Imagen (URL)</label>
+                    <input
+                      type="text"
+                      id="imagen"
+                      class="form-control"
+                      v-model="nuevoEvento.imagen"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="link" class="form-label">Link</label>
+                    <input
+                      type="text"
+                      id="link"
+                      class="form-control"
+                      v-model="nuevoEvento.link"
+                      required
+                    />
+                  </div>
+                  <div class="d-grid">
+                    <button class="btn btn-success" type="submit">
+                      Agregar Evento
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <h2 class="mb-3">Lista de Eventos</h2>
+            <div v-if="eventos.length > 0">
+              <div
+                class="itemEvent"
+                v-for="(evento, index) in eventos"
+                :key="evento.id"
+              >
+                <b>{{ evento.nombre }}</b> <br />
+                (<b>Fecha:</b> {{ evento.fecha }} | <b>Hora:</b> {{ evento.hora
+                }} | <b>Lugar:</b> {{ evento.lugar }} )
+                <a :href="evento.link" target="_blank">Ver evento</a> <br />
+                <img
+                  v-if="evento.imagen"
+                  :src="evento.imagen"
+                  alt="imagen evento"
+                  width="100px"
+                  height="auto"
+                  style="margin-left: 5px"
+                />
+                <p v-else>No hay imagen disponible</p>
+                <br />
+                <button
+                  @click="editarEvento(index)"
+                  class="btn btn-primary mt-3 me-3"
+                  data-bs-toggle="modal"
+                  data-bs-target="#myModal"
+                >
+                  Editar
+                </button>
+                <button
+                  @click="eliminarEvento(index)"
+                  class="btn btn-danger mt-3"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </div>
+            <p v-else>No hay eventos registrados.</p>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal" id="myModal">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <dialog v-if="editandoEvento !== null" open>
+                  <h2>Editar Evento</h2>
+                  <form @submit.prevent="guardarEdicion">
+                    <div>
+                      <label for="editNombre">Nombre:</label
+                      ><input
+                        type="text"
+                        id="editNombre"
+                        v-model="eventos[editandoEvento].nombre"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label for="editFecha">Fecha:</label
+                      ><input
+                        type="text"
+                        id="editFecha"
+                        v-model="eventos[editandoEvento].fecha"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label for="editHora">Hora:</label
+                      ><input
+                        type="text"
+                        id="editHora"
+                        v-model="eventos[editandoEvento].hora"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label for="editLugar">Lugar:</label
+                      ><input
+                        type="text"
+                        id="editLugar"
+                        v-model="eventos[editandoEvento].lugar"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label for="editLink">Link:</label
+                      ><input
+                        type="text"
+                        id="editLink"
+                        v-model="eventos[editandoEvento].link"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label for="editImagen">Imagen:</label
+                      ><input
+                        type="text"
+                        id="editImagen"
+                        v-model="eventos[editandoEvento].imagen"
+                        required
+                      />
+                    </div>
+                    <button type="submit" data-bs-dismiss="modal">
+                      Guardar
+                    </button>
+                    <button
+                      type="button"
+                      @click="cancelarEdicion"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancelar
+                    </button>
+                  </form>
+                </dialog>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
