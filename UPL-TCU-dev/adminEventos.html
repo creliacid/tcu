@@ -259,75 +259,42 @@
           <div class="modal" id="myModal">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
-                <dialog v-if="editandoEvento !== null" open>
-                  <h2>Editar Evento</h2>
-                  <form @submit.prevent="guardarEdicion">
-                    <div>
-                      <label for="editNombre">Nombre:</label
-                      ><input
-                        type="text"
-                        id="editNombre"
-                        v-model="eventos[editandoEvento].nombre"
-                        required
-                      />
+                <form v-if="editandoEvento !== null" @submit.prevent="guardarEdicion">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Editar Evento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" @click="cancelarEdicion"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="editNombre" class="form-label">Nombre:</label>
+                      <input type="text" id="editNombre" class="form-control" v-model="eventos[editandoEvento].nombre" required />
                     </div>
-                    <div>
-                      <label for="editFecha">Fecha:</label
-                      ><input
-                        type="text"
-                        id="editFecha"
-                        v-model="eventos[editandoEvento].fecha"
-                        required
-                      />
+                    <div class="mb-3">
+                      <label for="editFecha" class="form-label">Fecha:</label>
+                      <input type="text" id="editFecha" class="form-control" v-model="eventos[editandoEvento].fecha" required />
                     </div>
-                    <div>
-                      <label for="editHora">Hora:</label
-                      ><input
-                        type="text"
-                        id="editHora"
-                        v-model="eventos[editandoEvento].hora"
-                        required
-                      />
+                    <div class="mb-3">
+                      <label for="editHora" class="form-label">Hora:</label>
+                      <input type="text" id="editHora" class="form-control" v-model="eventos[editandoEvento].hora" required />
                     </div>
-                    <div>
-                      <label for="editLugar">Lugar:</label
-                      ><input
-                        type="text"
-                        id="editLugar"
-                        v-model="eventos[editandoEvento].lugar"
-                        required
-                      />
+                    <div class="mb-3">
+                      <label for="editLugar" class="form-label">Lugar:</label>
+                      <input type="text" id="editLugar" class="form-control" v-model="eventos[editandoEvento].lugar" required />
                     </div>
-                    <div>
-                      <label for="editLink">Link:</label
-                      ><input
-                        type="text"
-                        id="editLink"
-                        v-model="eventos[editandoEvento].link"
-                        required
-                      />
+                    <div class="mb-3">
+                      <label for="editLink" class="form-label">Link:</label>
+                      <input type="text" id="editLink" class="form-control" v-model="eventos[editandoEvento].link" required />
                     </div>
-                    <div>
-                      <label for="editImagen">Imagen:</label
-                      ><input
-                        type="text"
-                        id="editImagen"
-                        v-model="eventos[editandoEvento].imagen"
-                        required
-                      />
+                    <div class="mb-3">
+                      <label for="editImagen" class="form-label">Imagen:</label>
+                      <input type="text" id="editImagen" class="form-control" v-model="eventos[editandoEvento].imagen" required />
                     </div>
-                    <button type="submit" data-bs-dismiss="modal">
-                      Guardar
-                    </button>
-                    <button
-                      type="button"
-                      @click="cancelarEdicion"
-                      data-bs-dismiss="modal"
-                    >
-                      Cancelar
-                    </button>
-                  </form>
-                </dialog>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="cancelarEdicion">Cancelar</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -335,6 +302,6 @@
       </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
   </body>
 </html>

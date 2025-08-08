@@ -7,10 +7,7 @@
   <title>Un Puerto Limpio</title>
 
   <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="js/firebase-init.js"></script>
+
 
   <!--BOOTSTRAP-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -174,30 +171,43 @@
 
   <!-- Sección de eventos -->
   <div id="app">
-    <div class="d-flex flex-wrap justify-content-center p-5 bg-claro scroll-target" id="eventos">
-      <h1 class="titulo mb-5">EVENTOS</h1>
-      <div id="event-principal">
-        <img v-if="eventos.length > 0" :src="eventos[eventos.length - 1].imagen" alt="imagen evento" width="100%"
-          height="auto" style="margin-left: 5px;" class="rounded-4">
-      </div>
-      <div class="bg-light rounded-4" id="evet-todos">
-
-        <div v-if="eventos.length > 0">
-          <div class="itemEvent" v-for="(evento, index ) in eventos.slice(-3).reverse()" :key="evento.id">
-            <b>{{ evento.nombre }}</b> <br> (<b>Fecha:</b> {{ evento.fecha }} | <b>Hora:</b> {{ evento.hora }} |
-            <b>Lugar:</b> {{
-            evento.lugar
-            }},)
-            <a :href="evento.link" target="_blank">Ver evento</a> <br>
+    <div class="container-fluid p-0 bg-claro scroll-target" id="eventos">
+      <h1 class="titulo mb-5 text-center">EVENTOS</h1>
+      <div class="row justify-content-center align-items-start gx-5 gy-4">
+        <!-- Evento principal a la izquierda -->
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div v-if="eventos.length > 0" class="card shadow-lg border-3 border-warning h-100" style="background: #fff;">
+            <img :src="eventos[0].imagen" alt="imagen evento" class="img-fluid rounded-top" style="object-fit:cover; height:320px; width:100%; background:#eee;">
+            <div class="card-body p-4">
+              <h2 class="card-title fw-bold mb-3" style="color:#005c5c; font-size:2rem;">{{ eventos[0].nombre }}</h2>
+              <p class="card-text mb-2 fs-5"><i class="bi bi-calendar-event text-warning"></i> <b>Fecha:</b> {{ eventos[0].fecha }}</p>
+              <p class="card-text mb-2 fs-5"><i class="bi bi-clock text-warning"></i> <b>Hora:</b> {{ eventos[0].hora }}</p>
+              <p class="card-text mb-3 fs-5"><i class="bi bi-geo-alt text-warning"></i> <b>Lugar:</b> {{ eventos[0].lugar }}</p>
+              <a :href="eventos[0].link" target="_blank" class="btn btn-warning text-white fw-bold px-4 py-2 fs-5">Ver evento</a>
+            </div>
           </div>
         </div>
-        <p v-else>No hay eventos registrados.</p>
-
-        <a href="eventos.html" class="btn btn-orange float-end btn-conocenos ">Conoce más</a>
+        <!-- Lista de eventos a la derecha -->
+        <div class="col-lg-7 col-md-12">
+          <h4 class="titulo mb-3">PRÓXIMOS EVENTOS</h4>
+          <div class="eventos-lista px-2" style="max-height: 650px; overflow-y: auto;">
+            <div v-for="evento in eventos.slice(1)" :key="evento.id" class="card mb-4 border-warning" style="background:#f9f9f9; min-height:110px;">
+              <div class="card-body p-3 d-flex align-items-center">
+                <div class="flex-grow-1">
+                  <span class="fw-bold d-block mb-1 fs-5" style="color:#005c5c;">{{ evento.nombre }}</span>
+                  <span class="me-3"><i class="bi bi-calendar-event text-warning"></i> <b>Fecha:</b> {{ evento.fecha }}</span>
+                  <span class="me-3"><i class="bi bi-clock text-warning"></i> <b>Hora:</b> {{ evento.hora }}</span>
+                  <span><i class="bi bi-geo-alt text-warning"></i> <b>Lugar:</b> {{ evento.lugar }}</span>
+                </div>
+                <a :href="evento.link" target="_blank" class="btn btn-link btn-lg ps-3" style="color:#005c5c;">Ver evento</a>
+              </div>
+            </div>
+            <a href="eventos.html" class="btn btn-orange float-end btn-conocenos ">Conoce más</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 
   <!-- Sección de resultados -->
 
@@ -382,7 +392,8 @@
       </div>
     </div>
   </div>
-  <script src="js/script.js"></script>
+  <script type="module" src="js/firebase-init.js"></script>
+  <script type="module" src="js/script.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
